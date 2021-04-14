@@ -1,0 +1,34 @@
+# This is an example .goreleaser.yml file with some sane defaults.
+# Make sure to check the documentation at http://goreleaser.com
+env:
+  - CGO_ENABLED=0
+before:
+  hooks:
+    - go mod download
+    - go test -v -cover ./pkg/... ./tools/... ./flex/cmd/...
+builds:
+  - main: ./flex/main.go
+    binary: flex
+    goos:
+      - linux
+      - darwin
+    goarch:
+      - amd64
+archives:
+  - format: tar.gz
+    files:
+      - templates/**/*
+release:
+  github:
+    owner: flexport
+    name: devx-workflow-scripts
+artifactories:
+  - name: production
+    target: http://artifactory.flexport.io:80/artifactory/devx-workflow-scripts-go-release-local/{{ .ProjectName }}/{{ .Version }}/
+    checksum: true
+github_urls:
+  api: https://github.flexport.io/api/v3/
+  upload: https://github.flexport.io/api/uploads/
+  download: https://github.flexport.io/  
+changelog:
+  sort: asc

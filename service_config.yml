@@ -1,0 +1,4 @@
+build:
+  command: ./scripts/build-flex.sh
+test:
+  command: ./scripts/test-flex.sh
