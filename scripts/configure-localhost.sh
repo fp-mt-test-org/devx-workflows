@@ -12,8 +12,9 @@ esac
 flex_relative_path="alias flex=\"./.devx-workflows/flex\""
 
 if ! grep -q "${flex_relative_path}" "${profile_path}"; then
+    profile_content=$(cat ${profile_path})
     # Save it to the profile so it's execute for each shell session.
-    echo "${flex_relative_path}" >> "${profile_path}"
+    echo -e "${flex_relative_path}\n${profile_content}" > "${profile_path}"
 
     echo "Added ${flex_relative_path} to your ${profile_path}."
 
