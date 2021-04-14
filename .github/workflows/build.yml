@@ -15,7 +15,7 @@ jobs:
     - uses: actions/checkout@v2
     - name: Configure
       run: ./scripts/configure-localhost.sh
-    - name: Build
+    - name: Initial Build
       run:  ./scripts/build-flex.sh
     - name: Flex Build & Test
-      run: ./.devx-workflows/flex build-test
+      run: alias flex=./.devx-workflows/flex && flex build-test
