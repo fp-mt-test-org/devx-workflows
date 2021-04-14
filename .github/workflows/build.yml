@@ -18,4 +18,4 @@ jobs:
     - name: Initial Build
       run:  ./scripts/build-flex.sh
     - name: Flex Build & Test
-      run: source ~/.bashrc && flex build-test
+      run: . ~/.bashrc && flex build-test
