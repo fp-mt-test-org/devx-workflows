@@ -24,3 +24,5 @@ fi
 
 # Local install of goreleaser for build script
 brew install goreleaser
+
+cat ~/.bashrc
