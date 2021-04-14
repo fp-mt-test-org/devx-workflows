@@ -13,5 +13,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - name: Configure
+      run: ./scripts/configure-localhost.sh
     - name: Build
       run:  ./scripts/build-flex.sh
