@@ -16,4 +16,4 @@ jobs:
     - name: Configure
       run: ./scripts/configure-localhost.sh
     - name: Build
-      run:  cat ~/.bashrc && flex build-test
+      run:  bash && flex build-test
