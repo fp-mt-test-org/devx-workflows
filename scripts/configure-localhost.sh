@@ -4,10 +4,11 @@ set -o errexit
 set -o pipefail
 set -o nounset
 
-echo $SHELL
-cat ~/.bashrc
+case "$SHELL" in
+ "/bin/zsh") profile_path=~/.zshrc ;;
+ *) profile_path=~/.bashrc ;;
+esac
 
-profile_path=~/.zshrc
 flex_relative_path="alias flex=\"./.devx-workflows/flex\""
 
 if ! grep -q "${flex_relative_path}" "${profile_path}"; then
@@ -18,7 +19,7 @@ if ! grep -q "${flex_relative_path}" "${profile_path}"; then
 
     # Start a new shell session so that the
     # user can use the alias immediately.
-    zsh
+    $SHELL
 fi
 
 # Local install of goreleaser for build script
