@@ -5,13 +5,13 @@ set -o pipefail
 set -o nounset
 
 devx_scripts_dir=".devx-workflows"
-helloworld_dir="fke-helloworld-kotlin"
+helloworld_dir="devx-workflows-test-empty-repo"
 build_cmd="hello"
 
 trap "rm -rf ${helloworld_dir} ../${helloworld_dir}" ERR EXIT
 
 echo "--- Cloning helloworld service repository"
-git clone git@github.flexport.io:flexport/${helloworld_dir}.git
+git clone https://github.com/fp-mt-test-org/${helloworld_dir}.git
 cp -R ${devx_scripts_dir} ${helloworld_dir}
 cd ${helloworld_dir}
 
