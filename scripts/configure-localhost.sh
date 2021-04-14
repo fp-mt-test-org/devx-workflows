@@ -9,12 +9,12 @@ case "$SHELL" in
  *) profile_path=~/.bashrc ;;
 esac
 
-flex_relative_path='echo \"WEEEEE\"'
+flex_alias="alias flex=\"./devx-workflows/flex\""
 
-if ! grep -q "${flex_relative_path}" "${profile_path}"; then
+if ! grep -q "${flex_alias}" "${profile_path}"; then
     profile_content=$(cat ${profile_path})
     # Save it to the profile so it's execute for each shell session.
-    echo -e "${flex_relative_path}\n${profile_content}" > "${profile_path}"
+    echo -e "${flex_alias}\n${profile_content}" > "${profile_path}"
 
     echo "Added ${flex_relative_path} to your ${profile_path}."
 
@@ -25,5 +25,3 @@ fi
 
 # Local install of goreleaser for build script
 brew install goreleaser
-
-cat ~/.bashrc
