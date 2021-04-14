@@ -4,6 +4,9 @@ set -o errexit
 set -o pipefail
 set -o nounset
 
+echo $SHELL
+echo ~/.bashrc
+
 profile_path=~/.zshrc
 flex_relative_path="alias flex=\"./.devx-workflows/flex\""
 
