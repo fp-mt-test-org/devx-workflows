@@ -20,4 +20,4 @@ jobs:
     - name: Flex Build & Test
       run: .devx-workflows/flex build-test
     - name: Publish Release
-      run: goreleaser release
+      run: GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }} goreleaser release
