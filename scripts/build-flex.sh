@@ -13,7 +13,6 @@ echo "Current Branch: ${current_branch}"
 
 if [[ -n "${CI:-}" ]]; then
     echo "Detected running in CI, checking braches for tagging..."
-    git tag
 
     if [[ "${trunk_branch}" == ${current_branch} ]]; then
         brew install caarlos0/tap/svu

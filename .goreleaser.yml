@@ -22,9 +22,5 @@ release:
   github:
     owner: fp-mt-test-org    
     name: devx-workflows
-github_urls:
-  api: https://github.com/api/v3/
-  upload: https://github..com/api/uploads/
-  download: https://github.com/  
 changelog:
   sort: asc
