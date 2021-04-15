@@ -1,6 +1,22 @@
 # Development Workflow Scripts
 
-Looking for [user documentation](https://flexport.atlassian.net/wiki/spaces/IN/pages/1595900187/Workflow+Scripts+Current+state)?
+## Usage
+
+To install in to a new repo:
+
+1. Execute the following:
+
+```
+VERSION=0.2.4 bash -c 'mkdir -p .devx-workflows/darwin_amd64 && curl -LX GET "https://github.com/fp-mt-test-org/devx-workflows/releases/download/v${VERSION}/devx-workflows_${VERSION}_darwin_amd64.tar.gz" | tar -xvz -C .devx-workflows/darwin_amd64'
+```
+
+```
+VERSION=0.2.4 bash -c 'mkdir -p .devx-workflows/linux_amd64 && curl -LX GET "https://github.com/fp-mt-test-org/devx-workflows/releases/download/v${VERSION}/devx-workflows_${VERSION}_linux_amd64.tar.gz" | tar -xvz -C .devx-workflows/linux_amd64'
+```
+
+2. Add alias flex="./.devx-workflow/darwin_amd64/flex" to your ~/.zshrc / ~/.bashrc so you can just run flex [command]. For more info on how to use flex locally from your repo, run flex help. 
+
+3. Run `flex init`
 
 ## Working on the Workflow Scripts
 

@@ -16,8 +16,6 @@ builds:
       - amd64
 archives:
   - format: tar.gz
-    files:
-      - templates/**/*
 release:
   github:
     owner: fp-mt-test-org    
