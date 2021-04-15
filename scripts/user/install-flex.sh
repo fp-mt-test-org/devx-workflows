@@ -14,7 +14,7 @@ download_file_path="${download_dir}/${file_name}"
 mkdir -p "${install_dir}"
 mkdir -p "${download_dir}"
 
-if [ "$skip_download" == "false" ]; then
+if "$skip_download" == "false"; then
     echo "Downloading ${url} to ${download_dir}"
     curl -L "${url}" --output "${download_file_path}"
 fi
