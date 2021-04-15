@@ -22,13 +22,9 @@ release:
   github:
     owner: flexport
     name: devx-workflows
-artifactories:
-  - name: production
-    target: http://artifactory.flexport.io:80/artifactory/devx-workflows-go-release-local/{{ .ProjectName }}/{{ .Version }}/
-    checksum: true
 github_urls:
-  api: https://github.flexport.io/api/v3/
-  upload: https://github.flexport.io/api/uploads/
-  download: https://github.flexport.io/  
+  api: https://github.com/api/v3/
+  upload: https://github..com/api/uploads/
+  download: https://github.com/  
 changelog:
   sort: asc
