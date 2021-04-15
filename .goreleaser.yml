@@ -15,8 +15,8 @@ builds:
     goarch:
       - amd64
 archives:
-  - format: tar.gz
-#  - name_template: "flex_{{ .Os }}_{{ .Arch }}"
+  -
+    name_template: "flex_{{ .Os }}_{{ .Arch }}{{ if .Arm }}v{{ .Arm }}{{ end }}{{ if .Mips }}_{{ .Mips }}{{ end }}"
 release:
   github:
     owner: fp-mt-test-org    

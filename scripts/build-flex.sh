@@ -24,7 +24,7 @@ if [[ -n "${CI:-}" ]]; then
     fi
 fi
 
-devx_workflow_scripts_folder=".devx-workflows"
+#devx_workflow_scripts_folder=".devx-workflows"
 os="darwin" && [[ -n "${CI:-}" ]] && os="linux"
 
 # Build and output the workflow binaries.
