@@ -2,4 +2,3 @@
 *.gz
 .DS_Store
 dist/
-.devx-workflows/
