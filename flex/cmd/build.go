@@ -15,7 +15,7 @@ func init() {
 var buildCmd = &cobra.Command{
 	Use:   "build",
 	Short: "Build your application",
-	Long:  `Reads config from service_config.yml to build application`,
+	Long:  `Reads config from service_config.yml to build`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		execObj := new(exec.Obj)
 		return build(execObj)
