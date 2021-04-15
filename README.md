@@ -2,9 +2,12 @@
 
 ## Usage
 
-To install in to a new repo:
+To install into a repository:
 
-1. Execute the following:
+1. From the root of your repo, execute:
+
+    sh -c "$(curl -fsSL https://github.com/fp-mt-test-org/devx-workflows/releases/latest/download/install-flex.sh)"
+
 
 ```
 VERSION=0.2.4 bash -c 'mkdir -p .devx-workflows/darwin_amd64 && curl -LX GET "https://github.com/fp-mt-test-org/devx-workflows/releases/download/v${VERSION}/devx-workflows_${VERSION}_darwin_amd64.tar.gz" | tar -xvz -C .devx-workflows/darwin_amd64'
