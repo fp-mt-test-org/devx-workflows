@@ -36,9 +36,13 @@ First thing to know is that the workflow scripts are used to build and test them
 
 To build a new version of the workflow binaries, execute the build workflow:
 
-    ./scripts/build-flex.sh
+    auto_install=true ./scripts/build-flex.sh
 
 This will compile, unit test and update the binaries in the `./devx-workflows` directory.
+
+Once you have flex built, you can then use flex to build itself:
+
+    flex build
 
 ### Feature Test
 

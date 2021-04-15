@@ -19,16 +19,22 @@ if [[ -n "${CI:-}" ]]; then
     if [[ "${trunk_branch}" == "${current_branch}" ]]; then
         echo "Trunk=Current, tagging..."
         brew install caarlos0/tap/svu
-        git tag $(svu n)
+        git tag "$(svu n)"
         git push --tags
     fi
 fi
 
-#devx_workflow_scripts_folder=".devx-workflows"
-os="darwin" && [[ -n "${CI:-}" ]] && os="linux"
-
 # Build and output the workflow binaries.
 goreleaser --snapshot --skip-publish --rm-dist
 
-# mkdir -p ${devx_workflow_scripts_folder}
-# tar -xzvf dist/$(ls dist | grep -e "SNAPSHOT.*${os}") -C ${devx_workflow_scripts_folder}
+echo "Build completed!"
+
+if [ "${auto_install:=false}" == "true" ]; then
+    echo "Auto installing..."
+    skip_download=true ./scripts/user/install-flex.sh
+
+    echo "Configuring localhost..."
+    ./scripts/configure-localhost.sh
+
+    echo "Install completed!"
+fi
