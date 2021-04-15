@@ -8,7 +8,7 @@ set -o nounset
 trunk_branch=$(git branch | grep -o -m1 "\b\(master\|main\)\b")
 current_branch=$(git branch --show-current)
 
-echo "Trunk Branch: ${trunk_branch}"
+echo "Trunk Branch:   ${trunk_branch}"
 echo "Current Branch: ${current_branch}"
 
 if [[ -n "${CI:-}" ]]; then
