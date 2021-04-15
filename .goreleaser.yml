@@ -20,7 +20,7 @@ archives:
       - templates/**/*
 release:
   github:
-    owner: fp-mt
+    owner: fp-mt-test-org    
     name: devx-workflows
 github_urls:
   api: https://github.com/api/v3/
