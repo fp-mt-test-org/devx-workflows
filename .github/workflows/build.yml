@@ -18,8 +18,6 @@ jobs:
     - name: Configure
       run: ./scripts/configure-localhost.sh
     - name: Initial Build
-      run:  ./scripts/build-flex.sh
-    - name: Flex Build & Test
-      run: .devx-workflows/flex build-test
+      run:  ./scripts/build-flex.sh && .devx-workflows/flex build-test
     - name: Publish Release
       run: GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }} goreleaser release --rm-dist
