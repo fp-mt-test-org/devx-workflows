@@ -1,0 +1,12 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: "devx-workflows"
+  description: "Development automation"
+  annotations:
+    github.com/project-slug: fp-mt-test-org/devx-workflows
+    backstage.io/techdocs-ref: url:https://github.com/fp-mt-test-org/devx-workflows
+spec:
+  type: library
+  lifecycle: experimental
+  owner: "DevX"
