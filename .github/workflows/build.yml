@@ -16,7 +16,7 @@ jobs:
       with:
         fetch-depth: 0
     - name: Configure
-      run: ./scripts/configure-localhost.sh
+      run: ./scripts/user/configure-localhost.sh
     - name: Initial Build
       run:  auto_install=true ./scripts/build-flex.sh
     - name: Flex Build & Test

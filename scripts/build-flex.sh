@@ -34,7 +34,7 @@ if [ "${auto_install:=false}" == "true" ]; then
     skip_download=1 ./scripts/user/install-flex.sh
 
     echo "Configuring localhost..."
-    ./scripts/configure-localhost.sh
+    ./scripts/user/configure-localhost.sh
 
     echo "Install completed!"
 fi

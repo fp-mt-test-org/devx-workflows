@@ -17,6 +17,8 @@ builds:
 archives:
   -
     name_template: "flex_{{ .Os }}_{{ .Arch }}{{ if .Arm }}v{{ .Arm }}{{ end }}{{ if .Mips }}_{{ .Mips }}{{ end }}"
+    files:
+      - scripts/user/configure-localhost.sh
 release:
   github:
     owner: fp-mt-test-org    

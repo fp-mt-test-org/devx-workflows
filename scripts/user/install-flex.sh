@@ -27,3 +27,4 @@ rm -fdr "${download_dir}"
 
 echo "Installation complete!"
 echo ""
+"${install_dir}/scripts/user/configure-localhost.sh"
