@@ -3,6 +3,8 @@ kind: Component
 metadata:
   name: "devx-workflows"
   description: "Development automation"
+  tags:
+    - go
   annotations:
     github.com/project-slug: fp-mt-test-org/devx-workflows
     backstage.io/techdocs-ref: url:https://github.com/fp-mt-test-org/devx-workflows
