@@ -3,7 +3,7 @@
 set -o errexit
 set -o nounset
 
-skip_download="${skip_download:=false}"
+skip_download=${skip_download:=0}
 download_dir='dist'
 install_dir='.devx-workflows'
 os=$(uname | tr '[:upper:]' '[:lower:]')
@@ -14,7 +14,7 @@ download_file_path="${download_dir}/${file_name}"
 mkdir -p "${install_dir}"
 mkdir -p "${download_dir}"
 
-if "$skip_download" == "false"; then
+if [ "${skip_download}" -ne "1" ]; then
     echo "Downloading ${url} to ${download_dir}"
     curl -L "${url}" --output "${download_file_path}"
 fi

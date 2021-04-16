@@ -31,7 +31,7 @@ echo "Build completed!"
 
 if [ "${auto_install:=false}" == "true" ]; then
     echo "Auto installing..."
-    skip_download=true ./scripts/user/install-flex.sh
+    skip_download=1 ./scripts/user/install-flex.sh
 
     echo "Configuring localhost..."
     ./scripts/configure-localhost.sh
