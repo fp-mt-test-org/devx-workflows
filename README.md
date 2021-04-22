@@ -27,7 +27,7 @@ To build a new version of the workflow binaries, execute the build workflow:
 
     auto_install=true ./scripts/build-flex.sh
 
-This will compile, unit test and update the binaries in the `./devx-workflows` directory.
+This will compile, unit test and update the binaries in the `.devx-workflows` directory.
 
 Once you have flex built, you can then use flex to build itself:
 
