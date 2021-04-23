@@ -41,9 +41,7 @@ var initCmd = &cobra.Command{
 		for input := promptUser(); input != "done"; input = promptUser() {
 			buildEnv = append(buildEnv, input)
 		}
-		if len(buildEnv) == 0 {
-			viper.Set("build.env", append(buildEnv, "SOME_ENV_VAR=blah"))
-		} else {
+		if len(buildEnv) > 0 {
 			viper.Set("build.env", buildEnv)
 		}
 
