@@ -12,14 +12,15 @@ jobs:
     runs-on: ubuntu-20.04
 
     steps:
-    - uses: actions/checkout@v2
+    - name: Checkout Source
+      uses: actions/checkout@v2
       with:
         fetch-depth: 0
-    - name: Configure
-      run: ./scripts/user/configure-localhost.sh
-    - name: Initial Build
+    - name: Setup Dev Dependencies
+      run: ./scripts/setup-dev-dependencies.sh
+    - name: Initial Build & Unit Test
       run:  auto_install=true ./scripts/build-flex.sh
-    - name: Flex Build & Test
+    - name: Flex Build & Unit, Feature Test
       run: .devx-workflows/flex build-test
     - name: Publish Release
       run: GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }} goreleaser release --rm-dist
