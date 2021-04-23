@@ -23,5 +23,3 @@ if ! grep -q "${flex_alias}" "${profile_path}"; then
     $SHELL
 fi
 
-# Local install of goreleaser for build script
-brew install goreleaser

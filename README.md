@@ -15,7 +15,7 @@ sh -c "$(curl -fsSL https://github.com/fp-mt-test-org/devx-workflows/releases/la
 ### Getting Started
 
 1. Clone this repository.
-2. Configure: `./scripts/user/configure-localhost.sh`
+2. Configure: `./scripts/setup-dev-dependencies.sh`
 
 ### Basics
 
