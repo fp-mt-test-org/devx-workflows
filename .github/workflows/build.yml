@@ -17,7 +17,7 @@ jobs:
     - name: Setup Dev Dependencies
       run: ./scripts/setup-dev-dependencies.sh
     - name: Initial Build & Unit Test
-      run:  ls -la && ls -la ./scripts &&  auto_install=true ./scripts/user/build-flex.sh
+      run:  ls -la && ls -la ./scripts &&  auto_install=true ./scripts/build-flex.sh
     - name: Flex Build & Unit, Feature Test
       run: .devx-workflows/flex build-test
     - name: Publish Release
