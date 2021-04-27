@@ -17,7 +17,7 @@ if [[ -n "${CI:-}" ]]; then
     echo "Detected running in CI, checking branches for tagging..."
 
     if [[ "${trunk_branch}" == "${current_branch}" ]]; then
-        echo "Trunk=Current, tagging..."
+        echo "This build is running on the trunk branch ${trunk_branch}, tagging..."
         brew install caarlos0/tap/svu
         git tag "$(svu n)"
         git push --tags
@@ -27,14 +27,21 @@ fi
 # Build and output the workflow binaries.
 goreleaser --snapshot --skip-publish --rm-dist
 
+current_path=$(realpath .)
+scripts_folder_name='scripts/user'
+distribution_folder_name='dist'
+
+distribution_folder_path="${current_path}/${distribution_folder_name}"
+user_scripts_source_path="${current_path}/${scripts_folder_name}"
+user_scripts_dist_path="${distribution_folder_path}/${scripts_folder_name}"
+
+# Copy user scripts
+mkdir -p "${user_scripts_dist_path}"
+cp -r "${user_scripts_source_path}/" "${user_scripts_dist_path}/"
+
 echo "Build completed!"
 
 if [ "${auto_install:=false}" == "true" ]; then
     echo "Auto installing..."
-    skip_download=1 ./scripts/user/install-flex.sh
-
-    echo "Configuring localhost..."
-    ./scripts/user/configure-localhost.sh
-
-    echo "Install completed!"
+    skip_download=1 download_folder_path="${distribution_folder_path}" "${user_scripts_dist_path}/install-flex.sh"
 fi
