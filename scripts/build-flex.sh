@@ -31,7 +31,12 @@ current_path=$(realpath .)
 scripts_folder_name='scripts/user'
 distribution_folder_name='dist'
 
+echo "current_path: ${current_path}"
+
 distribution_folder_path="${current_path}/${distribution_folder_name}"
+
+echo "distribution_folder_path: ${distribution_folder_path}"
+
 user_scripts_source_path="${current_path}/${scripts_folder_name}"
 user_scripts_dist_path="${distribution_folder_path}/${scripts_folder_name}"
 
