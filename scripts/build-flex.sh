@@ -4,6 +4,8 @@ set -o errexit
 set -o pipefail
 set -o nounset
 
+echo "PWD: $(pwd)"
+
 # Tag if in CI and on main branch
 trunk_branch=$(git branch | grep -o -m1 "\b\(master\|main\)\b")
 current_branch=$(git branch --show-current)
@@ -28,10 +30,10 @@ fi
 goreleaser --snapshot --skip-publish --rm-dist
 
 current_path=$(realpath .)
+echo "current_path: ${current_path}"
+
 scripts_folder_name='scripts/user'
 distribution_folder_name='dist'
-
-echo "current_path: ${current_path}"
 
 distribution_folder_path="${current_path}/${distribution_folder_name}"
 
