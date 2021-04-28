@@ -4,7 +4,7 @@ set -o errexit
 set -o pipefail
 set -o nounset
 
-# Execute a relase in "dry run" mode to create a local build.
+# Execute a release in "dry run" mode to create a local build that can be tested.
 dry_run=true ./scripts/release-flex.sh
 
 current_path=$(realpath .)
