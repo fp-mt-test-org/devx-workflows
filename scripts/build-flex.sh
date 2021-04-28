@@ -40,7 +40,7 @@ goreleaser --snapshot --skip-publish --rm-dist
 current_path=$(realpath .)
 echo "current_path: ${current_path}"
 
-scripts_folder_name='scripts'
+scripts_folder_name='scripts/user'
 distribution_folder_name='dist'
 
 distribution_folder_path="${current_path}/${distribution_folder_name}"
@@ -52,7 +52,7 @@ user_scripts_dist_path="${distribution_folder_path}/${scripts_folder_name}"
 
 # Copy user scripts
 mkdir -p "${user_scripts_dist_path}"
-cp -vr "${user_scripts_source_path}/" "${user_scripts_dist_path}/"
+cp -vR "${user_scripts_source_path}/." "${user_scripts_dist_path}"
 
 echo "Build completed!"
 

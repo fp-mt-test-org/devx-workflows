@@ -27,7 +27,7 @@ tar -xvf "${download_file_path}" -C "${install_path}"
 
 git_ignore_file='.gitignore'
 
-if ! grep -q "${install_folder_name}" "${git_ignore_file}"; then
+if ! grep -qs "${install_folder_name}" "${git_ignore_file}"; then
     echo "Updating ${git_ignore_file} to ignore the ${install_path} install_path..."
     echo "${install_folder_name}" >> "${git_ignore_file}"
 fi
