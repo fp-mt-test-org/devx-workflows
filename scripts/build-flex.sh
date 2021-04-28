@@ -4,8 +4,6 @@ set -o errexit
 set -o pipefail
 set -o nounset
 
-echo "PWD: $(pwd)"
-
 # Tag if in CI and on main branch
 trunk_branch=$(git branch | grep -o -m1 "\b\(master\|main\)\b")
 current_branch=$(git branch --show-current)
@@ -38,22 +36,22 @@ fi
 goreleaser --snapshot --skip-publish --rm-dist
 
 current_path=$(realpath .)
-echo "current_path: ${current_path}"
-
 scripts_folder_name='scripts/user'
 distribution_folder_name='dist'
-
 distribution_folder_path="${current_path}/${distribution_folder_name}"
 
+echo ""
+echo "current_path: ${current_path}"
 echo "distribution_folder_path: ${distribution_folder_path}"
+echo ""
 
 user_scripts_source_path="${current_path}/${scripts_folder_name}"
 user_scripts_dist_path="${distribution_folder_path}/${scripts_folder_name}"
 
-# Copy user scripts
+echo "Copy user scripts..."
 mkdir -p "${user_scripts_dist_path}"
 cp -vR "${user_scripts_source_path}/." "${user_scripts_dist_path}"
-
+echo "Copy completed."
 echo "Build completed!"
 
 if [ "${auto_install:=false}" == "true" ]; then
