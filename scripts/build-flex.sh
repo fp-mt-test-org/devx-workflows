@@ -20,9 +20,17 @@ if [[ -n "${CI:-}" ]]; then
 
     if [[ "${trunk_branch}" == "${current_branch}" ]]; then
         echo "This build is running on the trunk branch ${trunk_branch}, tagging..."
+        
+        echo "Installing svu..."
         brew install caarlos0/tap/svu
+        echo "Install complete."
+        next_version="$(svu n)"
+        echo "Tagging repo with ${next_version}"
         git tag "$(svu n)"
+        echo "Pushing tags"
         git push --tags
+        echo "Tagging complete."
+        echo ""
     fi
 fi
 
