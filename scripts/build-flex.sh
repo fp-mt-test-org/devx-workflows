@@ -40,7 +40,7 @@ goreleaser --snapshot --skip-publish --rm-dist
 current_path=$(realpath .)
 echo "current_path: ${current_path}"
 
-scripts_folder_name='scripts/user'
+scripts_folder_name='scripts'
 distribution_folder_name='dist'
 
 distribution_folder_path="${current_path}/${distribution_folder_name}"
