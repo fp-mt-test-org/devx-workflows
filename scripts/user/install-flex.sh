@@ -12,10 +12,11 @@ install_path="${install_path:=$(realpath ${install_folder_name})}"
 os=$(uname | tr '[:upper:]' '[:lower:]')
 file_name="flex_${os}_amd64.tar.gz"
 url="https://github.com/fp-mt-test-org/devx-workflows/releases/latest/download/${file_name}"
-download_file_path="${download_folder_path}/${file_name}"
 
 mkdir -p "${install_path}"
 mkdir -p "${download_folder_path}"
+
+download_file_path="${download_folder_path}/${file_name}"
 
 if [ "${skip_download}" -ne "1" ]; then
     echo "Downloading ${url} to ${download_file_path}"
