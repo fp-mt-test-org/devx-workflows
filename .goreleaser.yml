@@ -1,11 +1,9 @@
-# This is an example .goreleaser.yml file with some sane defaults.
-# Make sure to check the documentation at http://goreleaser.com
 env:
   - CGO_ENABLED=0
 before:
   hooks:
     - go mod download
-    - go test -v -cover ./pkg/... ./tools/... ./flex/cmd/...
+    - go test -v -cover ./pkg/... ./flex/cmd/...
 builds:
   - main: ./flex/main.go
     binary: flex

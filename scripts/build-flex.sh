@@ -4,6 +4,9 @@ set -o errexit
 set -o pipefail
 set -o nounset
 
+echo "Building Flex!"
+echo ""
+
 # Execute a release in "dry run" mode to create a local build that can be tested.
 dry_run=true ./scripts/release-flex.sh
 
