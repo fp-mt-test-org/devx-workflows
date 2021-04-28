@@ -16,11 +16,15 @@ jobs:
       uses: actions/checkout@v2
       with:
         fetch-depth: 0
+        
     - name: Setup Dev Dependencies
       run: ./scripts/setup-dev-dependencies.sh
+
     - name: Initial Build & Unit Test
       run:  auto_install=true ./scripts/build-flex.sh
+
     - name: Flex Build & Unit, Feature Test
       run: .devx-workflows/flex build-test
+
     - name: Publish Release
-      run: GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }} goreleaser release --rm-dist
+      run: GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }} dry_run=false ./scripts/release-flex.sh
