@@ -52,7 +52,7 @@ user_scripts_dist_path="${distribution_folder_path}/${scripts_folder_name}"
 
 # Copy user scripts
 mkdir -p "${user_scripts_dist_path}"
-cp -r "${user_scripts_source_path}/" "${user_scripts_dist_path}/"
+cp -vr "${user_scripts_source_path}/" "${user_scripts_dist_path}/"
 
 echo "Build completed!"
 
