@@ -1,4 +1,4 @@
-module github.flexport.io/flexport/devx-workflow-scripts
+module devx-workflows
 
 go 1.15
 

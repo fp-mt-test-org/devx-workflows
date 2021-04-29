@@ -5,7 +5,7 @@ import (
 
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
-	exec "github.flexport.io/flexport/devx-workflow-scripts/pkg/exec"
+	exec "devx-workflows/pkg/exec"
 )
 
 func init() {

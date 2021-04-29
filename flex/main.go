@@ -3,7 +3,7 @@ package main
 import (
 	"os"
 
-	"github.flexport.io/flexport/devx-workflow-scripts/flex/cmd"
+	"devx-workflows/flex/cmd"
 )
 
 func main() {

@@ -6,7 +6,7 @@ import (
 	"github.com/spf13/viper"
 	"github.com/stretchr/testify/mock"
 	"github.com/stretchr/testify/suite"
-	exec "github.flexport.io/flexport/devx-workflow-scripts/pkg/exec"
+	exec "devx-workflows/pkg/exec"
 )
 
 type TestSuite struct {

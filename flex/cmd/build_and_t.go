@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/spf13/cobra"
-	exec "github.flexport.io/flexport/devx-workflow-scripts/pkg/exec"
+	exec "devx-workflows/pkg/exec"
 )
 
 func init() {
