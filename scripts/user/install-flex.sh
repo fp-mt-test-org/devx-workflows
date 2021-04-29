@@ -36,7 +36,7 @@ fi
 echo "Configuring the local host..."
 "${install_path}/scripts/user/configure-localhost.sh"
 
-if [ "${auto_clean:=true}" == "true" ]; then
+if [ "${auto_clean:=1}" == "1" ]; then
     echo "Cleaning up ${download_file_path}"
     rm -fdr "${download_file_path}"
 fi

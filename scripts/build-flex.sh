@@ -8,7 +8,7 @@ echo "Building Flex!"
 echo ""
 
 # Execute a release in "dry run" mode to create a local build that can be tested.
-dry_run=true ./scripts/release-flex.sh
+dry_run=1 ./scripts/release-flex.sh
 
 current_path=$(realpath .)
 scripts_folder_name='scripts/user'
@@ -29,7 +29,7 @@ cp -vR "${user_scripts_source_path}/." "${user_scripts_dist_path}"
 echo "Copy completed."
 echo "Build completed!"
 
-if [ "${auto_install:=false}" == "true" ]; then
+if [ "${auto_install:=0}" == "1" ]; then
     echo "Auto installing..."
     skip_download=1 download_folder_path="${distribution_folder_path}" "${user_scripts_dist_path}/install-flex.sh"
 fi
