@@ -2,6 +2,8 @@
 
 ## Usage
 
+### Installation
+
 To install into a repository:
 
 1. From the root of your repo, execute:
@@ -9,6 +11,12 @@ To install into a repository:
 sh -c "$(curl -fsSL https://github.com/fp-mt-test-org/devx-workflows/releases/latest/download/install-flex.sh)"
 ```
 3. Run `flex init`
+
+#### Get the Version
+
+You can see the version of flex like so:
+
+    flex -version
 
 ## Working on the Workflow Scripts
 
