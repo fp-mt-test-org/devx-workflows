@@ -4,3 +4,4 @@
 dist/
 .devx-workflows
 devx-workflows-test-empty-repo
+devx-workflows-test-upgrade
