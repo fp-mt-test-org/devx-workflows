@@ -1,5 +1,10 @@
 # Development Workflow Scripts
 
+# What is the devx workflow tool Flex?
+Flex is a CLI & config driven x-plat tool for defining and executing workflows.
+
+Similar to tools such as Make, however it's not tightly coupled to software build tools and can be used to execute any CLI tasks, including but not limited to building and testing code.
+
 ## Usage
 
 ### Installation
@@ -31,7 +36,7 @@ First thing to know is that the workflow scripts are used to build and test them
 
 ### Build & Unit Test
 
-To build a new version of the workflow binaries, execute the build workflow:
+To build and install a new version of flex, execute the build workflow:
 
     auto_install=1 ./scripts/build-flex.sh
 
