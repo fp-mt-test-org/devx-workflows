@@ -37,9 +37,9 @@ skip_download=1 auto_clean=0 download_folder_path="${dist_folder_path}" "${dist_
 build_cmd="hello"
 
 echo "Executing init workflow..."
-{ echo "echo ${build_cmd}"; sleep 1; echo "done"; sleep 1; echo "helloworld-service"; } | "${helloworld_repo_install_path}/flex" init
+{ echo "helloworld-service"; sleep 1; echo "echo ${build_cmd}"; } | "${helloworld_repo_install_path}/flex" init
 echo "Init complete, executing build..."
-
+cat service_config.yml
 build_output=$("${helloworld_repo_install_path}/flex" build)
 
 echo "-- Build Output --"
@@ -110,11 +110,17 @@ echo "TEST: Update Version Flow"
 echo "========================="
 repo_name='devx-workflows-test-upgrade'
 
+# Start back at the source root.
+cd "${current_path}"
+
 if [ -d "${repo_name}" ]; then
     echo "Pre-test Cleanup: Clearing out the test repo if left over from previous test..."
     rm -rdf "${repo_name}"
 fi
 
+expected_flex_version=$(git describe --abbrev=0 --tags)
+echo "expected_flex_version: ${expected_flex_version}"
+echo ""
 echo "Cloning a repo that has flex already initialized..."
 git clone https://github.com/fp-mt-test-org/${repo_name}.git
 echo "Clone complete."
@@ -122,21 +128,27 @@ echo ""
 
 cd "${repo_name}"
 
-echo "Step 1. Test: Get current actual version: flex --version"
-actual_flex_version=1
+echo "Installing flex from ${dist_folder_path} into ${repo_name}"
+skip_download=1 auto_clean=0 download_folder_path="${dist_folder_path}" "${dist_user_scripts_path}/install-flex.sh"
+
+echo "Step 1. Test: Get current actual version"
+actual_flex_version=$("${install_folder_name}/flex" -version)
+echo "actual_flex_version: ${actual_flex_version}"
+
 echo "Step 2. Test: Configure version to latest built version"
-expected_flex_version=2
-# update service_config.yaml
+service_config=$(cat service_config.yml)
+service_config="${service_config/version: .*/$expected_flex_version}"
+echo "service_config:"
+echo "${service_config}"
+
 echo "Step 3. Test: Run flex --version again:"
+actual_flex_version=$("${install_folder_name}/flex" -version)
+echo "actual_flex_version: ${actual_flex_version}"
 echo "Step 4. Flex: If configuration != actual then install-flex.sh, return updated version"
-actual_flex_version=2
-echo "Step 5. Test: Assert actual == configured"
-if [[ ! "${actual_flex_version}" == "${expected_flex_version}" ]]; then
-    echo "Fail: actual_flex_version: ${actual_flex_version} should equal expected_flex_version: ${expected_flex_version}"
+
+echo "Step 5. Test: Assert actual contains configured"
+if ! [[ "${actual_flex_version}" =~ .*[0-9]+\.[0-9]+\.[0-9]+.* ]]; then
+    echo "Fail: Output does not contain expected_flex_version: ${expected_flex_version}"
     exit 1
 fi
-echo "Pass!"
-
-echo "Step 6. Test: Run flex build"
-echo "Step 7. Test: Assert build output"
 echo "Pass!"

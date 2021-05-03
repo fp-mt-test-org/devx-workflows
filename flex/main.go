@@ -6,16 +6,15 @@ import (
 	"os"
 
 	"devx-workflows/flex/cmd"
+	"devx-workflows/pkg/version"
 )
 
-// FlexVersion contains the semantic version of this tool and should be set via ldflags at build-time.
-var FlexVersion = "unspecified"
-
 func main() {
-	version := flag.Bool("version", false, "Prints the version of this tool.")
+	versionFlag := flag.Bool("version", false, "Prints the version of this tool.")
 	flag.Parse()
-	if *version {
-		fmt.Println(FlexVersion)
+
+	if *versionFlag {
+		fmt.Println(version.FlexVersion)
 		os.Exit(0)
 	}
 
