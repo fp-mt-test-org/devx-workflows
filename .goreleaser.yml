@@ -25,6 +25,7 @@ release:
     name: devx-workflows
   extra_files:
     - glob: ./scripts/user/install-flex.sh
-    - glob: ./dist/devx-workflows_*/**/*.*
+    - glob: ./dist/devx-workflows_darwin_amd64/flex
+    - glob: ./dist/devx-workflows_linux_amd64/flex
 changelog:
   sort: asc
