@@ -3,16 +3,25 @@
 set -o errexit
 set -o nounset
 
+version_to_install="${1:-latest}"
 skip_download=${skip_download:=0}
 download_folder_path="${download_folder_path:=$(realpath dist)}"
 install_folder_name='.devx-workflows'
 install_path="${install_path:=$(realpath ${install_folder_name})}"
+user_scripts_install_path="${install_path}/scripts/user"
+
+echo "Installing flex version $version_to_install!"
 
 # Generate the platform specific file name to download.
 os=$(uname | tr '[:upper:]' '[:lower:]')
 file_name="flex_${os}_amd64.tar.gz"
-url="https://github.com/fp-mt-test-org/devx-workflows/releases/latest/download/${file_name}"
-
+base_url='https://github.com/fp-mt-test-org/devx-workflows/releases'
+if [[ "${version_to_install}" == "latest" ]]; then
+    url="${base_url}/latest/download/${file_name}"
+else
+    url="${base_url}/download/v${version_to_install}/${file_name}"
+fi
+     
 mkdir -p "${install_path}"
 mkdir -p "${download_folder_path}"
 
@@ -39,7 +48,7 @@ if ! grep -qs "${install_folder_name}" "${git_ignore_file}"; then
 fi
 
 echo "Configuring the local host..."
-"${install_path}/scripts/user/configure-localhost.sh"
+"${user_scripts_install_path}/configure-localhost.sh"
 
 if [ "${auto_clean:=1}" == "1" ]; then
     echo "Cleaning up ${download_file_path}"

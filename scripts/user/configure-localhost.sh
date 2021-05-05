@@ -9,7 +9,7 @@ case "$SHELL" in
  *) profile_path=~/.bashrc ;;
 esac
 
-flex_alias="alias flex=\"./.devx-workflows/flex\""
+flex_alias="alias flex=\"./.devx-workflows/scripts/user/run-flex.sh\""
 
 if ! grep -q "${flex_alias}" "${profile_path}"; then
     profile_content=$(cat ${profile_path})

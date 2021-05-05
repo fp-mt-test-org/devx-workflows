@@ -141,7 +141,7 @@ service_config="${service_config/version: .*/$expected_flex_version}"
 echo "service_config:"
 echo "${service_config}"
 
-echo "Step 3. Test: Run flex --version again:"
+echo "Step 3. Test: Run flex -version again:"
 actual_flex_version=$("${install_folder_name}/flex" -version)
 echo "actual_flex_version: ${actual_flex_version}"
 echo "Step 4. Flex: If configuration != actual then install-flex.sh, return updated version"
