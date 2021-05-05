@@ -21,9 +21,9 @@ if [ -f "${service_config_path}" ]; then
         echo "service_config: flex: version: ${configured_flex_version}"
 
         # Regex for matching snapshot versions such as v0.8.3-SNAPSHOT-27afad4
-        configured_flex_version_regex="v${configured_flex_version}.*"
+        configured_flex_version_regex=".*${configured_flex_version}.*"
 
-        if ! [[ "${initial_flex_version}" =~  ${configured_flex_version_regex} ]]; then
+        if ! [[ "${initial_flex_version}" =~ ${configured_flex_version_regex} ]]; then
             echo "Current version is different than configured, upgrading..."
             "${devx_workflows_path}/scripts/user/install-flex.sh" "${configured_flex_version}"
             echo "Current version is now:"
