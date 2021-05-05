@@ -13,7 +13,18 @@ dist_user_scripts_path="${dist_folder_path}/scripts/user"
 install_folder_name='.devx-workflows'
 helloworld_repo_name='devx-workflows-test-empty-repo'
 helloworld_repo_folder_path="${current_path}/${helloworld_repo_name}"
-helloworld_repo_install_path="${helloworld_repo_folder_path}/${install_folder_name}"
+
+flex_alias=$(cat "${dist_user_scripts_path}/configure-alias.sh")
+
+if [[ "${flex_alias}" =~ flex=(.+) ]]; then
+    alias_flex_path="${BASH_REMATCH[1]}"
+
+    echo "Configuring flex variable to match alias: ${alias_flex_path}"
+    flex="${alias_flex_path}"
+else
+    echo "Flex alias not found!"
+    exit 1
+fi
 
 echo ""
 echo "======================="
@@ -37,17 +48,17 @@ skip_download=1 auto_clean=0 download_folder_path="${dist_folder_path}" "${dist_
 build_cmd="hello"
 
 echo "Executing init workflow..."
-{ echo "helloworld-service"; sleep 1; echo "echo ${build_cmd}"; } | "${helloworld_repo_install_path}/flex" init
+{ echo "helloworld-service"; sleep 1; echo "echo ${build_cmd}"; } | "${flex}" init
 echo "Init complete, executing build..."
 cat service_config.yml
-build_output=$("${helloworld_repo_install_path}/flex" build)
+build_output=$("${flex}" build)
 
 echo "-- Build Output --"
 echo "${build_output}"
 echo "-- End Build Output --"
 
 echo "Assert build output is as expected:"
-if [ "${build_output}" != "${build_cmd}" ]; then
+if ! [[ "${build_output}" =~ ${build_cmd} ]]; then
     echo "Fail: Build output doesn't contain ${build_cmd}"
     exit 1
 fi
@@ -92,7 +103,7 @@ echo "Installing flex from ${dist_folder_path} into ${helloworld_repo_folder_pat
 skip_download=1 auto_clean=0 download_folder_path="${dist_folder_path}" "${dist_user_scripts_path}/install-flex.sh"
 
 echo "Getting version..."
-flex_output=$("${helloworld_repo_install_path}/flex" -version)
+flex_output=$("${flex}" -version)
 echo "flex_output:"
 echo ""
 echo "${flex_output}"
@@ -132,7 +143,7 @@ echo "Installing flex from ${dist_folder_path} into ${repo_name}"
 skip_download=1 auto_clean=0 download_folder_path="${dist_folder_path}" "${dist_user_scripts_path}/install-flex.sh"
 
 echo "Step 1. Test: Get current actual version"
-actual_flex_version=$("${install_folder_name}/flex" -version)
+actual_flex_version=$("${flex}" -version)
 echo "actual_flex_version: ${actual_flex_version}"
 
 echo "Step 2. Test: Configure version to latest built version"
@@ -142,7 +153,7 @@ echo "service_config:"
 echo "${service_config}"
 
 echo "Step 3. Test: Run flex -version again:"
-actual_flex_version=$("${install_folder_name}/flex" -version)
+actual_flex_version=$("${flex}" -version)
 echo "actual_flex_version: ${actual_flex_version}"
 echo "Step 4. Flex: If configuration != actual then install-flex.sh, return updated version"
 

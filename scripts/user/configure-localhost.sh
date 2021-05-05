@@ -9,7 +9,8 @@ case "$SHELL" in
  *) profile_path=~/.bashrc ;;
 esac
 
-flex_alias="alias flex=\"./.devx-workflows/scripts/user/run-flex.sh\""
+script_path="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+flex_alias=$(cat "${script_path}/configure-alias.sh")
 
 if ! grep -q "${flex_alias}" "${profile_path}"; then
     profile_content=$(cat ${profile_path})
@@ -22,4 +23,3 @@ if ! grep -q "${flex_alias}" "${profile_path}"; then
     # user can use the alias immediately.
     $SHELL
 fi
-

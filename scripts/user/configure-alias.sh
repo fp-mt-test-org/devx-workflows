@@ -1,0 +1,1 @@
+alias flex=./.devx-workflows/scripts/user/run-flex.sh
