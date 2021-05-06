@@ -11,6 +11,9 @@ jobs:
 
     runs-on: ubuntu-20.04
 
+    env:
+      flex: .devx-workflows/scripts/user/run-flex.sh
+
     steps:
     - name: Checkout Source
       uses: actions/checkout@v2
@@ -24,7 +27,7 @@ jobs:
       run:  auto_install=1 scripts/build-flex.sh
 
     - name: Flex Build & Unit, Feature Test
-      run: auto_update=0 .devx-workflows/scripts/user/run-flex.sh build-test
+      run: auto_update=0 $flex build-test
 
     - name: Publish Release
       run: GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }} dry_run=0 scripts/release-flex.sh
