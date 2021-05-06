@@ -147,18 +147,21 @@ actual_flex_version=$("${flex}" -version)
 echo "actual_flex_version: ${actual_flex_version}"
 
 echo "Step 2. Test: Configure version to latest built version"
-service_config=$(cat service_config.yml)
-service_config="${service_config/version: .*/$expected_flex_version}"
-echo "service_config:"
+service_config_path='service_config.yml'
+service_config=$(cat "${service_config_path}")
 echo "${service_config}"
+service_config="${service_config/0.9.3/$expected_flex_version}"
+echo "${service_config}" > "${service_config_path}"
 
 echo "Step 3. Test: Run flex -version again:"
+"${flex}"
 actual_flex_version=$("${flex}" -version)
 echo "actual_flex_version: ${actual_flex_version}"
 echo "Step 4. Flex: If configuration != actual then install-flex.sh, return updated version"
 
 echo "Step 5. Test: Assert actual contains configured"
-if ! [[ "${actual_flex_version}" =~ .*[0-9]+\.[0-9]+\.[0-9]+.* ]]; then
+echo "actual_flex_version: ${actual_flex_version}, expected_flex_version: ${expected_flex_version}"
+if ! [[ "${actual_flex_version}" =~ ${expected_flex_version} ]]; then
     echo "Fail: Output does not contain expected_flex_version: ${expected_flex_version}"
     exit 1
 fi
