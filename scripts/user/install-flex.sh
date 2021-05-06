@@ -35,11 +35,6 @@ fi
 echo "Extracting ${download_file_path} to ${install_path}"
 tar -xvf "${download_file_path}" -C "${install_path}"
 
-# Rename the platform specific file name to just flex.
-flex_file_path=$(ls "${install_path}"/flex_*)
-echo "Renaming ${flex_file_path} to flex..."
-mv "${flex_file_path}" "${install_path}/flex"
-
 git_ignore_file='.gitignore'
 
 if ! grep -qs "${install_folder_name}" "${git_ignore_file}"; then

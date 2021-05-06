@@ -6,7 +6,7 @@ before:
     - go test -v -cover ./pkg/... ./flex/cmd/...
 builds:
   - main: ./flex/main.go
-    binary: "flex_{{ .Os }}_{{ .Arch }}"
+    binary: flex
     goos:
       - linux
       - darwin
@@ -25,6 +25,5 @@ release:
     name: devx-workflows
   extra_files:
     - glob: ./scripts/user/install-flex.sh
-    - glob: ./dist/devx-workflows_*/flex*
 changelog:
   sort: asc
