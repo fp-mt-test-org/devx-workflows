@@ -2,7 +2,7 @@ apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
   name: "devx-workflows"
-  description: "Development automation"
+  description: "Workflow Automation!"
   tags:
     - go
   annotations:
