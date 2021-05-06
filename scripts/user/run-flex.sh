@@ -4,6 +4,7 @@ set -o errexit
 set -o pipefail
 set -o nounset
 
+auto_update="${auto_update:-1}"
 devx_workflows_path='./.devx-workflows'
 flex_path="${devx_workflows_path}/flex"
 flex_version_command="${flex_path} -version"
@@ -13,7 +14,7 @@ service_config_path='./service_config.yml'
 echo "Running Flex ${initial_flex_version}"
 
 # Check the service_config, if it exists (i.e. is not first run of flex)
-if [ -f "${service_config_path}" ]; then
+if [[ "${auto_update}" == "1" ]] && [[ -f "${service_config_path}" ]]; then
     service_config=$(cat ${service_config_path})
 
     if [[ "${service_config}" =~ [0-9]+.[0-9]+.[0-9]+ ]]; then
