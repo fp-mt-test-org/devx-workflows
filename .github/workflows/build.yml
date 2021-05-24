@@ -27,7 +27,7 @@ jobs:
       run:  auto_install=1 scripts/build-flex.sh
 
     - name: Flex Build & Unit, Feature Test
-      run: auto_update=0 $flex build-test
+      run: auto_update=0 $flex build && auto_update=0 $flex test
 
     - name: Publish Release
       run: GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }} dry_run=0 scripts/release-flex.sh
