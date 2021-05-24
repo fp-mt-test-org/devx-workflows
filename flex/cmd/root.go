@@ -29,7 +29,7 @@ func init() {
 		if _, ok := err.(viper.ConfigFileNotFoundError); ok {
 			fmt.Println("Config file not found, use `flex init` to initialize")
 		} else {
-			panic(fmt.Errorf("Fatal error config file: %s", err))
+			panic(fmt.Errorf("fatal error config file: %s", err))
 		}
 	}
 }

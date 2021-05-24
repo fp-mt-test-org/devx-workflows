@@ -1,8 +1,9 @@
 flex:
   version: 0.8.3
+  cmd:
+    build:
+      command: auto_install=1 auto_clean=0 ./scripts/build-flex.sh
+    test:
+      command: ./scripts/test-flex.sh
 service:
   name: devx-workflows
-build:
-  command: auto_install=1 auto_clean=0 ./scripts/build-flex.sh
-test:
-  command: ./scripts/test-flex.sh

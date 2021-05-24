@@ -26,8 +26,15 @@ var initCmd = &cobra.Command{
 		fmt.Println("Service Name (ie. helloworld-service):")
 		viper.Set("service.name", promptUser())
 
-		fmt.Println("Command to build your service (eg. docker build .): ")
-		viper.Set("build.command", promptUser())
+		fmt.Println("--- Configure flex commands ---")
+		for input := ""; input != "n"; input = promptUser() {
+			fmt.Println("Name of your command (eg. build): ")
+			cmdName := promptUser()
+			fmt.Println("Executable for this command (eg. docker build .): ")
+			cmdCommand := promptUser()
+			viper.Set(fmt.Sprintf("%s.%s.command", cmdKey, cmdName), cmdCommand)
+			fmt.Println("Configure another command? [y/n]")
+		}
 
 		viper.WriteConfigAs("./service_config.yml")
 	},

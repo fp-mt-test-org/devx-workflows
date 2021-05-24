@@ -34,4 +34,4 @@ if [[ "${auto_update}" == "1" ]] && [[ -f "${service_config_path}" ]]; then
     fi
 fi
 
-"${flex_path}" "${1:-}"
+"${flex_path}" "$@"
