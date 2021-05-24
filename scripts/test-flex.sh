@@ -48,10 +48,10 @@ skip_download=1 auto_clean=0 download_folder_path="${dist_folder_path}" "${dist_
 build_cmd="hello"
 
 echo "Executing init workflow..."
-{ echo "helloworld-service"; sleep 1; echo "echo ${build_cmd}"; } | "${flex}" init
+{ echo "helloworld-service"; sleep 1; echo "build"; sleep 1; echo "echo ${build_cmd}"; sleep 1; echo "n"; } | "${flex}" init
 echo "Init complete, executing build..."
 cat service_config.yml
-build_output=$("${flex}" build)
+build_output=$("${flex}" cmd build)
 
 echo "-- Build Output --"
 echo "${build_output}"
