@@ -2,6 +2,8 @@ package cmd
 
 import (
 	"fmt"
+	"io"
+	"os"
 
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
@@ -16,11 +18,11 @@ var listCmd = &cobra.Command{
 	Short: "List workflows specified by user",
 	Long:  `Reads config from service_config.yml to list user defined workflows`,
 	RunE: func(cmd *cobra.Command, args []string) error {
-		return list()
+		return list(os.Stdout)
 	},
 }
 
-func list() error {
+func list(out io.Writer) error {
 	cmdDefList, err := getWorkflowDefList()
 	if err != nil {
 		return err
@@ -29,9 +31,9 @@ func list() error {
 		return fmt.Errorf("no commands specified in service_config.yml; `flex init` before running this command")
 	}
 
-	fmt.Println("List of commands:")
+	fmt.Fprintln(out, "List of commands:")
 	for key, el := range cmdDefList {
-		fmt.Printf("  %s: %s\n", key, el.Command)
+		fmt.Fprintf(out, "  %s: %s\n", key, el.Command)
 	}
 	return nil
 }
