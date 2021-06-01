@@ -44,7 +44,7 @@ This will compile, unit test and update the binaries in the `.devx-workflows` di
 
 Once you have flex built, you can then use flex to build itself:
 
-    flex cmd build
+    flex build
 
 ### Feature Test
 
@@ -52,4 +52,4 @@ Unit tests are great, but they don't mean the features are working!
 
 To execute feature tests, execute the test workflow:
 
-    flex cmd test
+    flex test

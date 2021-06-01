@@ -51,7 +51,7 @@ echo "Executing init workflow..."
 { echo "helloworld-service"; sleep 1; echo "build"; sleep 1; echo "echo ${build_cmd}"; sleep 1; echo "n"; } | "${flex}" init
 echo "Init complete, executing build..."
 cat service_config.yml
-build_output=$("${flex}" cmd build)
+build_output=$("${flex}" build)
 
 echo "-- Build Output --"
 echo "${build_output}"
@@ -154,7 +154,6 @@ service_config="${service_config/0.9.3/$expected_flex_version}"
 echo "${service_config}" > "${service_config_path}"
 
 echo "Step 3. Test: Run flex -version again:"
-"${flex}"
 actual_flex_version=$("${flex}" -version)
 echo "actual_flex_version: ${actual_flex_version}"
 echo "Step 4. Flex: If configuration != actual then install-flex.sh, return updated version"

@@ -29,10 +29,10 @@ var initCmd = &cobra.Command{
 		fmt.Println("--- Configure flex commands ---")
 		for input := ""; input != "n"; input = promptUser() {
 			fmt.Println("Name of your command (eg. build): ")
-			cmdName := promptUser()
+			workflowName := promptUser()
 			fmt.Println("Executable for this command (eg. docker build .): ")
-			cmdCommand := promptUser()
-			viper.Set(fmt.Sprintf("%s.%s.command", cmdKey, cmdName), cmdCommand)
+			workflowCommand := promptUser()
+			viper.Set(fmt.Sprintf("%s.%s.command", workflowKey, workflowName), workflowCommand)
 			fmt.Println("Configure another command? [y/n]")
 		}
 

@@ -3,17 +3,27 @@ package cmd
 import (
 	"fmt"
 
+	exec "devx-workflows/pkg/exec"
+
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
 
+type Workflow struct {
+	Command string
+	Env     []string
+}
+
+const workflowKey = "flex.workflows"
+
 var rootCmd = &cobra.Command{
 	Use:   "flex",
 	Short: "Flex for all of your CI/CD needs",
-	Long:  `Build, push, pull, and deploy your application with Flex`,
-	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Make sure to add `alias flex=\"./devx-workflow-scripts/exec/flex\" to your ~/.zshrc and/or ~/.bashrc\n" +
-			"`flex help` for more info")
+	Long:  `Execute custom workflows for your application with Flex`,
+	Args:  cobra.MinimumNArgs(1),
+	RunE: func(cmd *cobra.Command, args []string) error {
+		execObj := new(exec.Obj)
+		return workflowExec(execObj, args[0])
 	},
 }
 
@@ -32,4 +42,21 @@ func init() {
 			panic(fmt.Errorf("fatal error config file: %s", err))
 		}
 	}
+}
+
+func workflowExec(execObj exec.E, workflowName string) error {
+	workflowDefList, err := getWorkflowDefList()
+	if err != nil {
+		return err
+	}
+	workflowDef, exists := workflowDefList[workflowName]
+	if !exists {
+		return fmt.Errorf("could not find workflow definition for %s; run `flex list` for a list of available workflows", workflowName)
+	}
+
+	cmd := workflowDef.Command
+	if len(cmd) > 0 {
+		return execObj.ExecFn(cmd, workflowDef.Env...)
+	}
+	return fmt.Errorf("command for `%s` is empty in service_config.yml", workflowName)
 }

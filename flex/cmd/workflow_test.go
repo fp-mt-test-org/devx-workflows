@@ -23,31 +23,31 @@ const testCmdCommand = "testing123"
 func (suite *CmdSuite) SetupTest() {
 	suite.execMock = new(exec.Mock)
 	suite.execMock.On("ExecFn", mock.Anything, mock.Anything).Return(nil)
-	viper.Set(fmt.Sprintf("%s.%s.command", cmdKey, testCmdName), testCmdCommand)
+	viper.Set(fmt.Sprintf("%s.%s.command", workflowKey, testCmdName), testCmdCommand)
 }
 
 func (suite *CmdSuite) TestCmdCommandIsExecuted() {
-	cmdExec(suite.execMock, testCmdName)
+	workflowExec(suite.execMock, testCmdName)
 	suite.execMock.AssertCalled(suite.T(), "ExecFn", testCmdCommand, mock.Anything)
 }
 
 func (suite *CmdSuite) TestCmdCommandNoError() {
-	assert.Nil(suite.T(), cmdExec(suite.execMock, testCmdName), "Unexpected error")
+	assert.Nil(suite.T(), workflowExec(suite.execMock, testCmdName), "Unexpected error")
 }
 
 func (suite *CmdSuite) TestEmptyCmdCommandErrors() {
-	viper.Set(fmt.Sprintf("%s.%s.command", cmdKey, testCmdName), "")
-	assert.NotNil(suite.T(), cmdExec(suite.execMock, testCmdName), "No error with unspecified build command")
+	viper.Set(fmt.Sprintf("%s.%s.command", workflowKey, testCmdName), "")
+	assert.NotNil(suite.T(), workflowExec(suite.execMock, testCmdName), "No error with unspecified build command")
 }
 
-func (suite *CmdSuite) TestEmptyCmdCommandNoCmdExecution() {
-	viper.Set(fmt.Sprintf("%s.%s.command", cmdKey, testCmdName), "")
-	cmdExec(suite.execMock, testCmdName)
+func (suite *CmdSuite) TestEmptyCmdCommandNoworkflowExecution() {
+	viper.Set(fmt.Sprintf("%s.%s.command", workflowKey, testCmdName), "")
+	workflowExec(suite.execMock, testCmdName)
 	suite.execMock.AssertNotCalled(suite.T(), "ExecFn", mock.Anything)
 }
 
 func (suite *CmdSuite) TestNoCommandDefWillError() {
-	assert.NotNil(suite.T(), cmdExec(suite.execMock, "fake"), "No error when command not defined")
+	assert.NotNil(suite.T(), workflowExec(suite.execMock, "fake"), "No error when command not defined")
 }
 
 func TestCmdSuite(t *testing.T) {
