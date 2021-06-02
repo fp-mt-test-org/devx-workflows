@@ -53,10 +53,3 @@ Unit tests are great, but they don't mean the features are working!
 To execute feature tests, execute the test workflow:
 
     flex test
-
-### Build, Unit & Feature Test Shortcut
-
-It's common to want to run the feature tests after the unit tests, so here's a command to do them in one step:
-
-    flex build-test
-

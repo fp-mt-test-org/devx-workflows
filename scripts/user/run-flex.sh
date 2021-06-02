@@ -4,7 +4,7 @@ set -o errexit
 set -o pipefail
 set -o nounset
 
-auto_update="${auto_update:-1}"
+auto_update="${auto_update:-0}"
 devx_workflows_path='./.devx-workflows'
 flex_path="${devx_workflows_path}/flex"
 flex_version_command="${flex_path} -version"
@@ -34,4 +34,4 @@ if [[ "${auto_update}" == "1" ]] && [[ -f "${service_config_path}" ]]; then
     fi
 fi
 
-"${flex_path}" "${1:-}"
+"${flex_path}" "$@"
